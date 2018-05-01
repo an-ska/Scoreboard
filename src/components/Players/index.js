@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Players.scss';
+import ScoreboardTotals from '../ScoreboardTotals';
 import Player from '../Player';
 
 
@@ -19,12 +20,13 @@ class Players extends Component {
           id: 2
         }
       ],
-      firstAvailableId: 3
+      firstAvailableId: 3,
+      totalPlayers: 2
     }
   }
 
   componentWillReceiveProps = (incomingProps) => {
-    let playerName = incomingProps.player.name;
+    const playerName = incomingProps.player.name;
 
     if (playerName !== null) {
       this.setState({
@@ -36,16 +38,18 @@ class Players extends Component {
             points: 0
           }
         ],
-        firstAvailableId: this.state.firstAvailableId + 1
+        firstAvailableId: this.state.firstAvailableId + 1,
+        totalPlayers: this.state.totalPlayers + 1
       })
     }
   }
 
-  handleRemove = (id) => {
-    const updatedPlayerList = this.state.players.filter(player => player.id !== id);
+  removePlayer = (playerId) => {
+    const updatedPlayerList = this.state.players.filter(player => player.id !== playerId);
 
     this.setState({
-      players: updatedPlayerList
+      players: updatedPlayerList,
+      totalPlayers: this.state.totalPlayers - 1
     })
   }
 
@@ -69,12 +73,13 @@ class Players extends Component {
   render() {
     return (
       <ul>
+        <ScoreboardTotals totalPlayers={this.state.totalPlayers}/>
         {this.state.players.map((player) =>
           <Player
             playerId={player.id}
             playerName={player.name}
             playerPoints={player.points}
-            removePlayer={this.handleRemove}
+            removePlayer={this.removePlayer}
             decreasePointsByOne={this.decreasePointsByOne}
             increasePointsByOne={this.increasePointsByOne} />
         )}
