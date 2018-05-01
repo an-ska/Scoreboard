@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Players.scss';
-import Player from '../Player/index';
+import Player from '../Player';
+
 
 class Players extends Component {
   constructor(props) {
@@ -9,10 +10,12 @@ class Players extends Component {
       players: [
         {
           name: 'Jan Kowalski',
+          points: 40,
           id: 1
         },
         {
           name: 'Grażyna Nowak',
+          points: 12,
           id: 2
         }
       ],
@@ -29,7 +32,8 @@ class Players extends Component {
           ...this.state.players,
           {
             name: playerName,
-            id: this.state.firstAvailableId
+            id: this.state.firstAvailableId,
+            points: 0
           }
         ],
         firstAvailableId: this.state.firstAvailableId + 1
@@ -38,10 +42,27 @@ class Players extends Component {
   }
 
   handleRemove = (id) => {
-    const updatedList = this.state.players.filter(player => player.id !== id);
+    const updatedPlayerList = this.state.players.filter(player => player.id !== id);
 
     this.setState({
-      players: updatedList
+      players: updatedPlayerList
+    })
+  }
+
+  increasePointsByOne = (playerId) => {
+    let updatedPlayerPoints = this.state.players[playerId - 1].points = this.state.players[playerId - 1].points + 1
+
+    this.setState({
+      updatedPlayerPoints
+    })
+  }
+
+  decreasePointsByOne = (playerId) => {
+    let updatedPlayerPoints = this.state.players[playerId - 1].points > 0 &&
+        (this.state.players[playerId - 1].points = this.state.players[playerId - 1].points - 1)
+
+    this.setState({
+      updatedPlayerPoints
     })
   }
 
@@ -49,7 +70,13 @@ class Players extends Component {
     return (
       <ul>
         {this.state.players.map((player) =>
-          <Player id={player.id} name={player.name} remove={this.handleRemove}/>
+          <Player
+            playerId={player.id}
+            playerName={player.name}
+            playerPoints={player.points}
+            removePlayer={this.handleRemove}
+            decreasePointsByOne={this.decreasePointsByOne}
+            increasePointsByOne={this.increasePointsByOne} />
         )}
       </ul>
     )

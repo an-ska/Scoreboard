@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import styles from './Player.scss';
 import PlayerPoints from '../PlayerPoints';
 
-
-class Player extends Component {
-  render() {
-    return (
-      <li id={this.props.id}>
-        {this.props.name}
-        <p onClick={() => this.props.remove(this.props.id)}>x</p>
-        <PlayerPoints/>
-      </li>
-    )
-  }
-}
+const Player = ({playerId, playerName, removePlayer, playerPoints, decreasePointsByOne, increasePointsByOne}) => (
+  <li id={playerId}>
+    {playerName}
+    <p onClick={() => removePlayer(playerId)}>x</p>
+    <PlayerPoints
+      playerId={playerId}
+      decreasePointsByOne={decreasePointsByOne}
+      increasePointsByOne={increasePointsByOne}
+      playerPoints={playerPoints}/>
+  </li>
+)
 
 export default Player;
