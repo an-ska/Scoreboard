@@ -5,7 +5,8 @@ class ScoreboardTotals extends Component {
   render() {
     return (
       <div>
-        {this.props.totalPlayers}
+        <p>Total players number: {this.props.totalPlayers}</p>
+        <p>Total points: {this.props.totalPoints}</p>
       </div>
     )
   }

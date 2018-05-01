@@ -3,10 +3,10 @@ import styles from './Players.scss';
 import ScoreboardTotals from '../ScoreboardTotals';
 import Player from '../Player';
 
-
 class Players extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       players: [
         {
@@ -21,7 +21,8 @@ class Players extends Component {
         }
       ],
       firstAvailableId: 3,
-      totalPlayers: 2
+      totalPlayers: 2,
+      totalPoints: 52
     }
   }
 
@@ -39,41 +40,56 @@ class Players extends Component {
           }
         ],
         firstAvailableId: this.state.firstAvailableId + 1,
-        totalPlayers: this.state.totalPlayers + 1
+        totalPlayers: this.state.totalPlayers + 1,
+        totalPoints: this.state.totalPoints
       })
     }
   }
 
   removePlayer = (playerId) => {
     const updatedPlayerList = this.state.players.filter(player => player.id !== playerId);
+    let removedPlayerId = this.state.players.findIndex(player => player.id === playerId)
+    const removedPlayer = this.state.players[removedPlayerId]
+    const updatedTotalPoints = this.state.totalPoints - removedPlayer.points
 
     this.setState({
       players: updatedPlayerList,
-      totalPlayers: this.state.totalPlayers - 1
+      totalPlayers: this.state.totalPlayers - 1,
+      totalPoints: updatedTotalPoints
     })
   }
 
   increasePointsByOne = (playerId) => {
-    let updatedPlayerPoints = this.state.players[playerId - 1].points = this.state.players[playerId - 1].points + 1
+    let playerToUpdate = this.state.players.findIndex(player => player.id === playerId)
+    let updatedPlayerPoints = this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points + 1
+    let updatedTotalPoints = this.state.totalPoints + 1
 
     this.setState({
-      updatedPlayerPoints
+      updatedPlayerPoints,
+      totalPoints: updatedTotalPoints
     })
   }
 
   decreasePointsByOne = (playerId) => {
-    let updatedPlayerPoints = this.state.players[playerId - 1].points > 0 &&
-        (this.state.players[playerId - 1].points = this.state.players[playerId - 1].points - 1)
+    let playerToUpdate = this.state.players.findIndex(player => player.id === playerId)
+    let updatedPlayerPoints = this.state.players[playerToUpdate].points > 0 &&
+        (this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points - 1)
+    let updatedTotalPoints = this.state.players[playerToUpdate].points >
+    0 ? this.state.totalPoints - 1 : this.state.totalPoints
 
     this.setState({
-      updatedPlayerPoints
+      updatedPlayerPoints,
+      totalPoints: updatedTotalPoints
     })
   }
 
   render() {
     return (
       <ul>
-        <ScoreboardTotals totalPlayers={this.state.totalPlayers}/>
+        <ScoreboardTotals
+          totalPlayers={this.state.totalPlayers}
+          totalPoints={this.state.totalPoints}
+        />
         {this.state.players.map((player) =>
           <Player
             playerId={player.id}
@@ -81,7 +97,8 @@ class Players extends Component {
             playerPoints={player.points}
             removePlayer={this.removePlayer}
             decreasePointsByOne={this.decreasePointsByOne}
-            increasePointsByOne={this.increasePointsByOne} />
+            increasePointsByOne={this.increasePointsByOne}
+          />
         )}
       </ul>
     )
