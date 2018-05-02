@@ -72,14 +72,16 @@ class Players extends Component {
 
   decreasePointsByOne = (playerId) => {
     let playerToUpdate = this.state.players.findIndex(player => player.id === playerId)
-    let updatedPlayerPoints = this.state.players[playerToUpdate].points > 0 &&
-        (this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points - 1)
     let updatedTotalPoints = this.state.players[playerToUpdate].points >
     0 ? this.state.totalPoints - 1 : this.state.totalPoints
+    let updatedPlayerPoints = this.state.players[playerToUpdate].points > 0 &&
+        (this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points - 1)
 
+    console.log(updatedPlayerPoints)
     this.setState({
+      totalPoints: updatedTotalPoints,
       updatedPlayerPoints,
-      totalPoints: updatedTotalPoints
+
     })
   }
 
