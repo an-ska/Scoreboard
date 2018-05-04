@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import styles from './ScoreboardTotals.scss';
 
 const ScoreboardTotals = ({totalPlayers, totalPoints}) => (

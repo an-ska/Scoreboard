@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import styles from './Scoreboard.scss';
 import Players from '../../components/Players';
 
