@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './Players.scss';
 import ScoreboardTotals from '../ScoreboardTotals';
 import Player from '../Player';
+import AddPlayerForm from '../AddPlayerForm';
 
 class Players extends Component {
   constructor(props) {
@@ -26,10 +27,10 @@ class Players extends Component {
     }
   }
 
-  componentWillReceiveProps = (incomingProps) => {
-    const playerName = incomingProps.player.name;
+  addPlayer = (userInput) => {
+    const playerName = userInput;
 
-    if (playerName !== null) {
+    if (playerName !== '') {
       this.setState({
         players: [
           ...this.state.players,
@@ -41,7 +42,7 @@ class Players extends Component {
         ],
         firstAvailableId: this.state.firstAvailableId + 1,
         totalPlayers: this.state.totalPlayers + 1,
-        totalPoints: this.state.totalPoints
+        totalPoints: this.state.totalPoints,
       })
     }
   }
@@ -77,7 +78,6 @@ class Players extends Component {
     let updatedPlayerPoints = this.state.players[playerToUpdate].points > 0 &&
         (this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points - 1)
 
-    console.log(updatedPlayerPoints)
     this.setState({
       totalPoints: updatedTotalPoints,
       updatedPlayerPoints,
@@ -87,22 +87,25 @@ class Players extends Component {
 
   render() {
     return (
-      <ul>
-        <ScoreboardTotals
-          totalPlayers={this.state.totalPlayers}
-          totalPoints={this.state.totalPoints}
-        />
-        {this.state.players.map((player) =>
-          <Player
-            playerId={player.id}
-            playerName={player.name}
-            playerPoints={player.points}
-            removePlayer={this.removePlayer}
-            decreasePointsByOne={this.decreasePointsByOne}
-            increasePointsByOne={this.increasePointsByOne}
+      <div>
+        <ul>
+          <ScoreboardTotals
+            totalPlayers={this.state.totalPlayers}
+            totalPoints={this.state.totalPoints}
           />
-        )}
-      </ul>
+          {this.state.players.map((player) =>
+            <Player
+              playerId={player.id}
+              playerName={player.name}
+              playerPoints={player.points}
+              removePlayer={this.removePlayer}
+              decreasePointsByOne={this.decreasePointsByOne}
+              increasePointsByOne={this.increasePointsByOne}
+            />
+          )}
+        </ul>
+        <AddPlayerForm addPlayer={this.addPlayer}/>
+      </div>
     )
   }
 }

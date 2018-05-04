@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {hot} from 'react-hot-loader';
 import styles from './App.scss';
-import Scoreboard from './components/Scoreboard'
+import Scoreboard from './containers/Scoreboard'
 
 const App = () =>
 (<Fragment>

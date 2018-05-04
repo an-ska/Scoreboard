@@ -6,23 +6,32 @@ class AddPlayerForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: null
+      userInput: ''
     }
   }
 
+  handleChange = (e) => {
+    this.setState({
+      userInput: e.target.value
+    })
+  }
+
   handleClick = () => {
-    this.setState( { userInput: document.querySelector('input').value });
+    this.props.addPlayer(this.state.userInput)
+
+    this.setState({
+      userInput: ''
+    })
   }
 
   render() {
     return (
       <div>
-        <Players player={{name: this.state.userInput}}/>
         <form>
-          <input type='text' placeholder='Type player name'/>
+          <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange}/>
           <button type='button' onClick={this.handleClick}>Add Player</button>
-      </form>
-    </div>
+        </form>
+      </div>
     )
   }
 }

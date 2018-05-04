@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './Scoreboard.scss';
-import Players from '../Players/index';
-import AddPlayerForm from '../AddPlayerForm/index';
+import Players from '../../components/Players/index';
 
 const Scoreboard = () => (
   <div>
     <h1>Scoreboard</h1>
-    <AddPlayerForm />
+    <Players />
   </div>
 
 );
