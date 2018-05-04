@@ -1,13 +1,10 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {hot} from 'react-hot-loader';
 import styles from './App.scss';
-import Scoreboard from './containers/Scoreboard'
+import Scoreboard from './containers/Scoreboard';
 
-const App = () =>
-(<Fragment>
-  <div className=''>
-    <Scoreboard />
-  </div>
-</Fragment>);
+const App = () => (
+  <Scoreboard />
+);
 
 export default hot(module)(App);

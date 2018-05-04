@@ -10,7 +10,7 @@ const Player = ({playerId, playerName, removePlayer, playerPoints, decreasePoint
       playerId={playerId}
       decreasePointsByOne={decreasePointsByOne}
       increasePointsByOne={increasePointsByOne}
-      playerPoints={playerPoints}/>
+      playerPoints={playerPoints} />
   </li>
 )
 

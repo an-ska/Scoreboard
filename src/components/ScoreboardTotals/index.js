@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Fragment} from 'react';
 import styles from './ScoreboardTotals.scss';
 
 const ScoreboardTotals = ({totalPlayers, totalPoints}) => (
-  <div>
+  <Fragment>
     <p>Total players number: {totalPlayers}</p>
     <p>Total points: {totalPoints}</p>
-  </div>
-)
+  </Fragment>
+);
 
 export default ScoreboardTotals;

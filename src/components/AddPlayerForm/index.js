@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './AddPlayerForm.scss';
-import Players from '../Players/index';
 
 class AddPlayerForm extends Component {
   constructor(props) {
@@ -10,7 +9,7 @@ class AddPlayerForm extends Component {
     }
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       userInput: e.target.value
     })
@@ -26,12 +25,10 @@ class AddPlayerForm extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange}/>
-          <button type='button' onClick={this.handleClick}>Add Player</button>
-        </form>
-      </div>
+      <form>
+        <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange}/>
+        <button type='button' onClick={this.handleClick}>Add Player</button>
+      </form>
     )
   }
 }

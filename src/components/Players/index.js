@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styles from './Players.scss';
 import ScoreboardTotals from '../ScoreboardTotals';
 import Player from '../Player';
@@ -61,9 +61,9 @@ class Players extends Component {
   }
 
   increasePointsByOne = (playerId) => {
-    let playerToUpdate = this.state.players.findIndex(player => player.id === playerId)
-    let updatedPlayerPoints = this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points + 1
-    let updatedTotalPoints = this.state.totalPoints + 1
+    let playerToUpdate = this.state.players.findIndex(player => player.id === playerId);
+    let updatedTotalPoints = this.state.totalPoints + 1;
+    let updatedPlayerPoints = this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points + 1;
 
     this.setState({
       updatedPlayerPoints,
@@ -72,11 +72,11 @@ class Players extends Component {
   }
 
   decreasePointsByOne = (playerId) => {
-    let playerToUpdate = this.state.players.findIndex(player => player.id === playerId)
+    let playerToUpdate = this.state.players.findIndex(player => player.id === playerId);
     let updatedTotalPoints = this.state.players[playerToUpdate].points >
-    0 ? this.state.totalPoints - 1 : this.state.totalPoints
+    0 ? this.state.totalPoints - 1 : this.state.totalPoints;
     let updatedPlayerPoints = this.state.players[playerToUpdate].points > 0 &&
-        (this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points - 1)
+        (this.state.players[playerToUpdate].points = this.state.players[playerToUpdate].points - 1);
 
     this.setState({
       totalPoints: updatedTotalPoints,
@@ -87,14 +87,15 @@ class Players extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
+        <ScoreboardTotals
+          totalPlayers={this.state.totalPlayers}
+          totalPoints={this.state.totalPoints}
+        />
         <ul>
-          <ScoreboardTotals
-            totalPlayers={this.state.totalPlayers}
-            totalPoints={this.state.totalPoints}
-          />
           {this.state.players.map((player) =>
             <Player
+              key={player.id}
               playerId={player.id}
               playerName={player.name}
               playerPoints={player.points}
@@ -104,8 +105,8 @@ class Players extends Component {
             />
           )}
         </ul>
-        <AddPlayerForm addPlayer={this.addPlayer}/>
-      </div>
+        <AddPlayerForm addPlayer={this.addPlayer} />
+      </Fragment>
     )
   }
 }

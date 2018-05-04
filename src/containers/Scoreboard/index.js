@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import styles from './Scoreboard.scss';
-import Players from '../../components/Players/index';
+import Players from '../../components/Players';
 
 const Scoreboard = () => (
-  <div>
+  <Fragment>
     <h1>Scoreboard</h1>
     <Players />
-  </div>
-
+  </Fragment>
 );
 
 export default Scoreboard;
