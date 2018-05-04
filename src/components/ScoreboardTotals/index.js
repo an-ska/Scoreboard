@@ -3,8 +3,8 @@ import styles from './ScoreboardTotals.scss';
 
 const ScoreboardTotals = ({totalPlayers, totalPoints}) => (
   <Fragment>
-    <p>Total players number: {totalPlayers}</p>
-    <p>Total points: {totalPoints}</p>
+    <p className={styles.total}>Players: {totalPlayers}</p>
+    <p className={styles.total}>Total points: {totalPoints}</p>
   </Fragment>
 );
 

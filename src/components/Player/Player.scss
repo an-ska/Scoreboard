@@ -1,0 +1,21 @@
+.player {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 25px;
+  list-style-type: none;
+  text-transform: capitalize;
+  border-top: 1px solid #444;
+}
+
+.removeIcon {
+  color: #FF0000;
+  cursor: pointer;
+}
+
+.playerName {
+  flex: 1;
+  padding: 0 20px;
+}

@@ -25,9 +25,9 @@ class AddPlayerForm extends Component {
 
   render() {
     return (
-      <form>
-        <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange}/>
-        <button type='button' onClick={this.handleClick}>Add Player</button>
+      <form className={styles.form}>
+        <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange} className={styles.input}/>
+        <button type='button' onClick={this.handleClick} className={styles.button}>Add Player</button>
       </form>
     )
   }

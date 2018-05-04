@@ -81,7 +81,6 @@ class Players extends Component {
     this.setState({
       totalPoints: updatedTotalPoints,
       updatedPlayerPoints,
-
     })
   }
 
@@ -92,7 +91,7 @@ class Players extends Component {
           totalPlayers={this.state.totalPlayers}
           totalPoints={this.state.totalPoints}
         />
-        <ul>
+        <ul className={styles.playersList}>
           {this.state.players.map((player) =>
             <Player
               key={player.id}
