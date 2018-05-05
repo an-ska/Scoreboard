@@ -15,18 +15,39 @@ class AddPlayerForm extends Component {
     })
   }
 
-  handleClick = () => {
-    this.props.addPlayer(this.state.userInput)
+  handleKeyPress = e => {
+    if (e.key !== 'Enter') return;
 
-    this.setState({
-      userInput: ''
-    })
+    if (this.state.userInput.length === 0) {
+      e.preventDefault();
+      return
+    }
+
+    if (this.state.userInput.length > 0) {
+      e.preventDefault();
+      this.props.addPlayer(this.state.userInput);
+
+      this.setState({
+        userInput: ''
+      })
+    }
+
+  }
+
+  handleClick = () => {
+    if (this.state.userInput.length > 0) {
+      this.props.addPlayer(this.state.userInput);
+
+      this.setState({
+        userInput: ''
+      })
+    }
   }
 
   render() {
     return (
       <form className={styles.form}>
-        <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange} className={styles.input}/>
+        <input type='text' placeholder='Type player name' value={this.state.userInput} onChange={this.handleChange} onKeyPress={this.handleKeyPress} className={styles.input}/>
         <button type='button' onClick={this.handleClick} className={styles.button}>Add Player</button>
       </form>
     )

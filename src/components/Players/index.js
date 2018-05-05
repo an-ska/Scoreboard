@@ -29,28 +29,26 @@ class Players extends Component {
   addPlayer = (userInput) => {
     const playerName = userInput;
 
-    if (playerName !== '') {
-      this.setState({
-        players: [
-          ...this.state.players,
-          {
-            name: playerName,
-            id: this.state.firstAvailableId,
-            points: 0
-          }
-        ],
-        firstAvailableId: this.state.firstAvailableId + 1,
-        totalPlayers: this.state.totalPlayers + 1,
-        totalPoints: this.state.totalPoints,
-      })
-    }
+    this.setState({
+      players: [
+        ...this.state.players,
+        {
+          name: playerName,
+          id: this.state.firstAvailableId,
+          points: 0
+        }
+      ],
+      firstAvailableId: this.state.firstAvailableId + 1,
+      totalPlayers: this.state.totalPlayers + 1,
+      totalPoints: this.state.totalPoints,
+    })
   }
 
   removePlayer = (playerId) => {
-    const updatedPlayerList = this.state.players.filter(player => player.id !== playerId);
+    let updatedPlayerList = this.state.players.filter(player => player.id !== playerId);
     let removedPlayerId = this.state.players.findIndex(player => player.id === playerId)
-    const removedPlayer = this.state.players[removedPlayerId]
-    const updatedTotalPoints = this.state.totalPoints - removedPlayer.points
+    let removedPlayer = this.state.players[removedPlayerId]
+    let updatedTotalPoints = this.state.totalPoints - removedPlayer.points
 
     this.setState({
       players: updatedPlayerList,
