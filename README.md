@@ -4,4 +4,9 @@ To open the project please run:
 * npm install
 * npm start
 
-DEMO > soon
+
+Used:
+
+* React.js
+* CSS Modules
+* Flexbox
