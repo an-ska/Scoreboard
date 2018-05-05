@@ -2,10 +2,10 @@ import React, { Fragment } from 'react';
 import styles from './ScoreboardTotals.scss';
 
 const ScoreboardTotals = ({totalPlayers, totalPoints}) => (
-  <Fragment>
+  <div className={styles.totals}>
     <p className={styles.total}>Players: {totalPlayers}</p>
     <p className={styles.total}>Total points: {totalPoints}</p>
-  </Fragment>
+  </div>
 );
 
 export default ScoreboardTotals;

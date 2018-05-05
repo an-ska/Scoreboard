@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import styles from './Players.scss';
 import ScoreboardTotals from '../ScoreboardTotals';
 import Player from '../Player';
 import AddPlayerForm from '../AddPlayerForm';
@@ -91,7 +90,7 @@ class Players extends Component {
           totalPlayers={this.state.totalPlayers}
           totalPoints={this.state.totalPoints}
         />
-        <ul className={styles.playersList}>
+        <ul>
           {this.state.players.map((player) =>
             <Player
               key={player.id}
